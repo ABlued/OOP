@@ -8,15 +8,7 @@ public class TicketSeller {
     }
 
     public void sellTo(Audience audience) {
-        if (audience.getBag().hasInvitation()) {
-            Ticket ticket = ticketOffice.getTicket();
-            audience.getBag().setTicket(ticket);
-        } else {
-            Ticket ticket = ticketOffice.getTicket();
-            audience.getBag().minusAmount(ticket.getFee());
-            ticketOffice.plusAmount(ticket.getFee());
-            audience.getBag().setTicket(ticket);
-        }
+       ticketOffice.plusAmount(audience.buy(ticketOffice.getTicket()));
     }
     /**
      * ticketOffice의 가시성이 private이고 접근 가능한 퍼블릭 메서드가 더 이상 존재하지 않기 때문에
